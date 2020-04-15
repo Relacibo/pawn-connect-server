@@ -15,7 +15,7 @@
   },
   "homepage": "https://github.com/Relacibo/chess-manage/blob/master/README.md",
   "scripts": {
-    "build": "node ./build.js",
+    "build": "node ./pre-build.js && tsc --build tsconfig.prod.json",
     "lint": "tslint --project \"tsconfig.json\"",
     "start": "node dist/index.js",
     "start:dev": "nodemon --config nodemon.json",
