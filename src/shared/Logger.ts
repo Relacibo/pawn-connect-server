@@ -19,7 +19,7 @@ const logger = createLogger({
  * to `combined.log. Write all logs error (and below) to `error.log`.
  * For development, print to the console.
  */
-if (process.env.NODE_ENV === 'production') {
+/*if (process.env.NODE_ENV === 'production') {
 
     const fileFormat = format.combine(
         format.timestamp(),
@@ -37,7 +37,7 @@ if (process.env.NODE_ENV === 'production') {
     logger.add(errTransport);
     logger.add(infoTransport);
 
-} else {
+} else {*/
 
     const errorStackFormat = format((info) => {
         if (info.stack) {
@@ -55,6 +55,6 @@ if (process.env.NODE_ENV === 'production') {
         ),
     });
     logger.add(consoleTransport);
-}
+//}
 
 export default logger;
