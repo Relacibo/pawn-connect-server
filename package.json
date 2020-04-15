@@ -17,15 +17,16 @@
   "scripts": {
     "build": "node ./util/build.js",
     "lint": "tslint --project \"tsconfig.json\"",
-    "start": "node -r module-alias/register dist",
-    "start:heroku": "npm-run-all build start",
+    "start": "node -r module-alias/register ./app",
+    "start:heroku-start": "node -r module-alias/register .",
+    "start:heroku": "npm-run-all build start:heroku-start",
     "start:dev": "nodemon --config nodemon.json",
     "test": "nodemon --config nodemon.test.json"
   },
   "_moduleAliases": {
-    "@root": "dist",
-    "@shared": "dist/shared",
-    "@server": "dist/server"
+    "@root": "app",
+    "@shared": "app/shared",
+    "@server": "app/server"
   },
   "dependencies": {
     "command-line-args": "^5.1.1",
