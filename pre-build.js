@@ -15,7 +15,7 @@ childProcess.exec('tsc --build tsconfig.prod.json', (err, stdout, stderr) => {
     if (err) {
         console.error(err)
       } else {
-       console.log(`stdout: ${stdout}`);
-       console.log(`stderr: ${stderr}`);
+       console.log(`${stdout}`);
+       console.log(`${stderr}`);
       }
 });
