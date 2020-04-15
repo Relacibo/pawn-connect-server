@@ -1,0 +1,8 @@
+{
+  "name": "Chess Manage",
+  "description": "Managing Tool for chess tournaments",
+  "repository": "https://github.com/Relacibo/chess-manage-client",
+  "logo": "https://relacibo.github.io/chess-manage-client/public/images/logo.png",
+  "keywords": ["node", "express", "heroku"],
+  "image": "heroku/nodejs"
+}
