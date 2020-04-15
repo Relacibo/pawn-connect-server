@@ -1,15 +1,15 @@
-import cookieParser from 'cookie-parser';
 import morgan from 'morgan';
-import path from 'path';
 import helmet from 'helmet';
-import pug from 'pug';
 
 import express, { Request, Response, NextFunction } from 'express';
 import { BAD_REQUEST } from 'http-status-codes';
 import 'express-async-errors';
 
 import BaseRouter from './routes';
+import DefaultRouter from './templating'
+import cookieParser from 'cookie-parser';
 import logger from '@shared/Logger';
+import path from 'path';
 
 
 // Init express
@@ -51,12 +51,10 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
 /************************************************************************************
  *                              Serve front-end content
  ***********************************************************************************/
-
-const viewsDir = path.join(__dirname, 'views');
+let viewsDir = path.join(__dirname, 'views');
+app.set('views', viewsDir);
 app.set('view engine', 'pug');
-app.get('*', (req, res) => {
-    res.render('index', { title: 'Hey', message: 'Hello there!'});
-  });
+app.use('*', DefaultRouter)
 
 // Export express instance
 export default app;
