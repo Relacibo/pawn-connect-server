@@ -16,8 +16,8 @@
       "@root/*": [
         "src/*"
       ],
-      "@shared/*": [
-        "src/shared/*"
+      "@templating/*": [
+        "src/templating/*"
       ],
       "@server": [
         "src/server"

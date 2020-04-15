@@ -8,8 +8,6 @@ import 'express-async-errors';
 
 import BaseRouter from './routes';
 import DefaultRouter from './templating'
-import cookieParser from 'cookie-parser';
-import logger from '@shared/Logger';
 import path from 'path';
 import qs from 'qs';
 import config from '@root/config';
@@ -26,7 +24,6 @@ const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cookieParser());
 
 // Show routes called in console during development
 if (process.env.NODE_ENV === 'development') {
@@ -43,7 +40,7 @@ app.use('/api', BaseRouter);
 
 // Print API errors
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
-    logger.error(err.message, err);
+    console.error(err.message, err);
     return res.status(BAD_REQUEST).json({
         error: err.message,
     });
@@ -53,7 +50,7 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
 // Start the server
 const port = Number(process.env.PORT || config.port);
 let server = app.listen(port, () => {
-    logger.info('Express server started on port: ' + port);
+    console.log('Express server started on port: ' + port);
 });
 
 /************************************************************************************
@@ -65,7 +62,7 @@ const peerServer = ExpressPeerServer(server, {
     proxied: true
 } as any);
 app.use('/peerjs', peerServer);
-logger.info('Peer server started');
+console.log('Peer server started');
 
 /************************************************************************************
  *                              Serve front-end content

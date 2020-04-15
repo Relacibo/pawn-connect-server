@@ -1,14 +1,14 @@
 import config from '@root/config';
-import { Router } from 'express';
+import { Router, Response} from 'express';
 
 // Init router and path
 const router = Router();
 const clientPublicFolder = process.env.CLIENT_PUBLIC_FOLDER || config.clientPublicFolder;
-const jsFileName = process.env.NODE_ENV === 'development' ? 'index.js' : 'index.min.js';
+const jsFileName = process.env.NODE_ENV === 'production' ? 'index.min.js' : 'index.js';
 const cssFileName = 'style.css';
 
-router.get('/*', (req, res) => {
-  let paramsJson = JSON.stringify(req.query);
+export function sendPayloadWithParams(params: any, res: Response<any>) {
+  let paramsJson = JSON.stringify(params);
   res.render('index', {
     title: 'Chess Manage',
     clientPublicFolder,
@@ -16,6 +16,10 @@ router.get('/*', (req, res) => {
     cssFileName,
     paramsJson
   });
+}
+
+router.get('/*', (req, res) => {
+  sendPayloadWithParams(req.query, res)
 });
 
 export default router;

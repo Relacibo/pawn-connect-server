@@ -1,7 +1,8 @@
 import { Router } from 'express';
 import simpleOAuth2 from 'simple-oauth2'
-import status, { BAD_REQUEST, UNAUTHORIZED} from 'http-status-codes';
+import status, { BAD_REQUEST, UNAUTHORIZED, OK} from 'http-status-codes';
 import config from '@root/config';
+import {sendPayloadWithParams} from '../templating'
 
 const router = Router();
 
@@ -28,6 +29,7 @@ router.get('/authorize', (req, res) => {
     scope,
     state
   });
+  console.log(authorizationUri);
   res.json({ authorizationUri });
 });
 
@@ -41,6 +43,9 @@ router.get('/callback', async (req, res) => {
   try {
     const result = await oauth2.authorizationCode.getToken(tokenConfig);
     const accessToken = oauth2.accessToken.create(result);
+    console.log(accessToken);
+    sendPayloadWithParams({accessToken}, res)
+    
   } catch {
     res.status(UNAUTHORIZED);
   }

@@ -15,7 +15,7 @@
   },
   "homepage": "https://github.com/Relacibo/chess-manage/blob/master/README.md",
   "scripts": {
-    "build": "node ./util/build.js",
+    "build": "node ./build.js",
     "lint": "tslint --project \"tsconfig.json\"",
     "start": "node -r module-alias/register ./dist",
     "start:dev": "nodemon --config nodemon.json",
@@ -23,12 +23,10 @@
   },
   "_moduleAliases": {
     "@root": "dist",
-    "@shared": "dist/shared",
-    "@server": "dist/server"
+    "@server": "dist/server",
+    "@templating": "dist/templating"
   },
   "dependencies": {
-    "command-line-args": "^5.1.1",
-    "cookie-parser": "^1.4.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-async-errors": "^3.1.1",
@@ -42,26 +40,18 @@
     "peer": "^0.5.2",
     "pug": "^2.0.4",
     "simple-oauth2": "^3.4.0",
-    "tslib": "^1.11.1",
-    "winston": "^3.2.1"
+    "tslib": "^1.11.1"
   },
   "devDependencies": {
-    "@types/command-line-args": "^5.0.0",
-    "@types/cookie-parser": "^1.4.2",
     "@types/express": "^4.17.6",
     "@types/find": "^0.2.1",
     "@types/helmet": "0.0.45",
-    "@types/jasmine": "^3.5.10",
-    "@types/jsonfile": "^5.0.0",
     "@types/morgan": "^1.9.0",
     "@types/node": "^13.11.1",
     "@types/pug": "^2.0.4",
     "@types/simple-oauth2": "^2.5.2",
     "@types/supertest": "^2.0.8",
-    "jasmine": "^3.5.0",
-    "jsonfile": "^6.0.1",
     "nodemon": "^2.0.3",
-    "supertest": "^4.0.2",
     "ts-node": "^8.8.2",
     "tsconfig-paths": "^3.9.0",
     "tslint": "^6.1.1",
