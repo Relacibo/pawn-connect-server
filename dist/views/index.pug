@@ -1,9 +1,0 @@
-html
-  head
-    title= title
-    each size in [16, 32, 96]
-      link(rel='icon' type='image/png' href=`${clientPublicFolder}/favicon-${size}.png` sizes=`${size}x${size}`)
-    script(src=`${clientPublicFolder}/${scriptFileName}`)
-    script.
-      chessmanage.init(#{paramsJson})
-  body
