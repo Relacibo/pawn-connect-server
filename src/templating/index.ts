@@ -12,7 +12,8 @@ router.get('*', (req, res) => {
       title: 'Chess Manage',  
       clientPublicFolder: config.clientPublicFolder,
       scriptFileName: scriptFileName,
-      paramsJson
+      paramsJson,
+      testVar: process.env.testvar
   });
 });
 
