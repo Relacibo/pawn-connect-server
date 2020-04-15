@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import config from 'src/config';
+import config from '@root/config';
 
 // Init router and path
 const router = Router();

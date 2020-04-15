@@ -18,14 +18,14 @@
     "build": "node ./util/build.js",
     "lint": "tslint --project \"tsconfig.json\"",
     "start": "node -r module-alias/register ./dist",
+    "start:b": "npm-run-all start build",
     "start:dev": "nodemon --config nodemon.json",
     "test": "nodemon --config nodemon.test.json"
   },
   "_moduleAliases": {
-    "@daos": "dist/daos",
-    "@entities": "dist/entities",
+    "@root": "dist",
     "@shared": "dist/shared",
-    "@server": "dist/Server"
+    "@server": "dist/server"
   },
   "dependencies": {
     "command-line-args": "^5.1.1",
@@ -37,6 +37,7 @@
     "http-status-codes": "^1.4.0",
     "module-alias": "^2.2.2",
     "morgan": "^1.10.0",
+    "npm-run-all": "^4.1.5",
     "pug": "^2.0.4",
     "winston": "^3.2.1"
   },
