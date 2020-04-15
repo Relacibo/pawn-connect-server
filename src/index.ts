@@ -1,3 +1,4 @@
+import './loadEnv'; // Must be the first import
 import morgan from 'morgan';
 import helmet from 'helmet';
 import { ExpressPeerServer } from 'peer';
@@ -10,8 +11,7 @@ import BaseRouter from './routes';
 import DefaultRouter from './templating'
 import path from 'path';
 import qs from 'qs';
-import config from '@root/config';
-
+import config from './config';
 
 // Init express
 const app = express();

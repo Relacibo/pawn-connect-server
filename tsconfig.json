@@ -12,17 +12,6 @@
     "strict": true,
     "target": "es6",
     "moduleResolution": "node",
-    "paths": {
-      "@root/*": [
-        "src/*"
-      ],
-      "@templating/*": [
-        "src/templating/*"
-      ],
-      "@server": [
-        "src/server"
-      ]
-    },
     "types": [
       "node"
     ],

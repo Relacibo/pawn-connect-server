@@ -1,14 +1,14 @@
 import { Router } from 'express';
 import simpleOAuth2 from 'simple-oauth2'
 import status, { BAD_REQUEST, UNAUTHORIZED, OK} from 'http-status-codes';
-import config from '@root/config';
+import config from '../config';
 import {sendPayloadWithParams} from '../templating'
 
 const router = Router();
 
-const id = config.clientId;
-const secret = config.clientSecret;
-const hostName = config.hostName;
+const id = process.env.LICHESS_CLIENT_ID || config.lichessClientId;
+const secret = process.env.LICHESS_CLIENT_SECRET || config.lichessClientSecret;
+const hostName = process.env.HOSTNAME || config.hostName;
 const path = '/api/oauth'
 const redirect_uri = `${hostName}${path}/callback`
 const tokenHost = 'https://oauth.lichess.org';
