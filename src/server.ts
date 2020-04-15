@@ -2,6 +2,7 @@ import cookieParser from 'cookie-parser';
 import morgan from 'morgan';
 import path from 'path';
 import helmet from 'helmet';
+import pug from 'pug';
 
 import express, { Request, Response, NextFunction } from 'express';
 import { BAD_REQUEST } from 'http-status-codes';
@@ -52,12 +53,10 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
  ***********************************************************************************/
 
 const viewsDir = path.join(__dirname, 'views');
-app.set('views', viewsDir);
-const staticDir = path.join(__dirname, 'public');
-app.use(express.static(staticDir));
-app.get('*', (req: Request, res: Response) => {
-    res.sendFile('index.html', {root: viewsDir});
-});
+app.set('view engine', 'pug');
+app.get('*', (req, res) => {
+    res.render('index', { title: 'Hey', message: 'Hello there!'});
+  });
 
 // Export express instance
 export default app;
