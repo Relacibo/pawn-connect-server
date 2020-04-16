@@ -1,8 +1,8 @@
 const config = {
   port: 3000,
   clientPublicFolder: 'https://relacibo.github.io/pawn-connect-client/public',
-  lichessClientId: 'b4vGMWbvr8yCMvIR',
-  lichessClientSecret: 'fEaqj3n3skG69qYgUbKDiTYe21pvH2uJ',
+  lichessClientId: 'R1B32PrShh6gWQee',
+  lichessClientSecret: '4GOomb2Z4Ce7CRUUZGLOh9HkWi65UivG',
   hostName: 'https://pawn-connect.herokuapp.com'
 }
 

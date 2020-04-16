@@ -36,18 +36,20 @@ router.get('/authorize', (req, res) => {
 router.get('/callback', async (req, res) => {
   const code: string = req.query.code as string;
   if (code || typeof code != 'string') {
-    res.status(BAD_REQUEST);
+    res.sendStatus(BAD_REQUEST);
     return;
   }
   const tokenConfig = { code, redirect_uri, scope };
   try {
     const result = await oauth2.authorizationCode.getToken(tokenConfig);
+    if (!result) {
+      res.sendStatus(UNAUTHORIZED);
+    }
     const accessToken = oauth2.accessToken.create(result);
-    console.log(accessToken);
     sendPayloadWithParams({accessToken}, res)
     
   } catch {
-    res.status(UNAUTHORIZED);
+    res.sendStatus(UNAUTHORIZED);
   }
 
 })
