@@ -57,8 +57,7 @@ let server = app.listen(port, () => {
  *                                    Peer-Server
  ***********************************************************************************/
 const peerServer = ExpressPeerServer(server, {
-    debug: true,
-    path: '/myapp'
+    debug: true
   });
 app.use('/peerjs', peerServer);
 console.log('Peer server started');
