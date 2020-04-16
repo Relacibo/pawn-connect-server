@@ -1,7 +1,7 @@
 import './loadEnv'; // Must be the first import
 import morgan from 'morgan';
 import helmet from 'helmet';
-import { ExpressPeerServer } from 'peer';
+const { ExpressPeerServer } = require('peer');
 
 import express, { Request, Response, NextFunction } from 'express';
 import { BAD_REQUEST } from 'http-status-codes';
@@ -56,11 +56,10 @@ let server = app.listen(port, () => {
 /************************************************************************************
  *                                    Peer-Server
  ***********************************************************************************/
-
 const peerServer = ExpressPeerServer(server, {
     debug: true,
-    proxied: true
-} as any);
+    path: '/myapp'
+  });
 app.use('/peerjs', peerServer);
 console.log('Peer server started');
 
