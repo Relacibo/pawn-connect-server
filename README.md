@@ -1,1 +1,1 @@
-# Chess Manage Server
+# Pawn Connect Server

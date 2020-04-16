@@ -1,19 +1,19 @@
 {
-  "name": "chess-manage-server",
-  "productName": "chessManageServer",
+  "name": "pawn-connect-server",
+  "productName": "pawnConnectServer",
   "version": "1.0.0",
-  "description": "Thin Server for Chess Manage",
+  "description": "Thin Server for Pawn Connect",
   "author": {
     "name": "Reinhard Bronner",
     "email": "reinhard.bronner@rcbnetwork.de",
-    "url": "https://relacibo.github.io/chess-manage/public/index.html"
+    "url": "https://relacibo.github.io/pawn-connect/public/index.html"
   },
   "license": "AGPL v3",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Relacibo/chess-manage-server.git"
+    "url": "git+https://github.com/Relacibo/pawn-connect-server.git"
   },
-  "homepage": "https://github.com/Relacibo/chess-manage/blob/master/README.md",
+  "homepage": "https://github.com/Relacibo/pawn-connect/blob/master/README.md",
   "scripts": {
     "build": "node ./pre-build.js && tsc --build tsconfig.prod.json",
     "lint": "tslint --project \"tsconfig.json\"",

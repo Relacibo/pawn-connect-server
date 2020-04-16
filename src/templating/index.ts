@@ -10,7 +10,7 @@ const cssFileName = 'style.css';
 export function sendPayloadWithParams(params: any, res: Response<any>) {
   let paramsJson = JSON.stringify(params);
   res.render('index', {
-    title: 'Chess Manage',
+    title: 'Pawn Connect',
     clientPublicFolder,
     jsFileName,
     cssFileName,
