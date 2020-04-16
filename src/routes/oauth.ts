@@ -42,14 +42,11 @@ router.get('/callback', async (req, res) => {
   const tokenConfig = { code, redirect_uri, scope };
   try {
     const result = await oauth2.authorizationCode.getToken(tokenConfig);
-    if (!result) {
-      res.sendStatus(UNAUTHORIZED);
-    }
     const accessToken = oauth2.accessToken.create(result);
     sendPayloadWithParams({accessToken}, res)
     
-  } catch {
-    res.sendStatus(UNAUTHORIZED);
+  } catch (err) {
+    res.status(UNAUTHORIZED).json(err);
   }
 
 })
