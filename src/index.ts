@@ -38,14 +38,22 @@ app.use('/api', BaseRouter);
 // Print API errors
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
     console.error(err.message, err);
-    return res.status(BAD_REQUEST).json({
+    return res.json({
         error: err.message,
     });
 });
 
-app.get('/google8cebb85f1ba37774.html', (req, res) => {
-    res.status(OK).send("google-site-verification: google8cebb85f1ba37774.html");
+
+const googleSiteVerificationCodes =
+    process.env.GOOGLE_SITE_VERIFICATION_CODES ? process.env.GOOGLE_SITE_VERIFICATION_CODES.split(',') :
+        config.googleSiteVerificationCodes;
+
+googleSiteVerificationCodes.forEach (code => {
+    app.get(`/google${code}.html`, (req, res) => {
+        res.status(OK).send(`google-site-verification: google${code}.html`);
+    })
 })
+
 
 
 // Start the server
@@ -59,7 +67,7 @@ let server = app.listen(port, () => {
  ***********************************************************************************/
 const peerServer = ExpressPeerServer(server, {
     debug: true
-  });
+});
 app.use('/peerjs', peerServer);
 console.log('Peer server started');
 

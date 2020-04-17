@@ -6,6 +6,8 @@ import {sendPayloadWithParams} from '../templating'
 
 const router = Router();
 
+var waitOneMinute = false;
+
 const id = process.env.LICHESS_CLIENT_ID || config.lichessClientId;
 const secret = process.env.LICHESS_CLIENT_SECRET || config.lichessClientSecret;
 const hostName = process.env.HOSTNAME || config.hostName;
@@ -23,6 +25,10 @@ const oauth2 = simpleOAuth2.create({
 });
 
 router.get('/authorize', (req, res) => {
+  if (waitOneMinute) {
+    res.json({error: 'Wait one minute'});
+    return;
+  }
   const state = Math.random().toString(36).substring(2);
   const authorizationUri = oauth2.authorizationCode.authorizeURL({
     redirect_uri,
@@ -34,24 +40,24 @@ router.get('/authorize', (req, res) => {
 });
 
 router.get('/callback', async (req, res) => {
-  console.log('*');
   const code: string = req.query.code as string;
-  console.log('*');
-  if (code || typeof code != 'string') {
-    res.sendStatus(BAD_REQUEST);
+  if (!code || typeof code !== 'string') {
+    res.json({error: 'code not set'});
     return;
   }
-  console.log(code);
   const tokenConfig = { code, redirect_uri, scope };
   try {
     const result = await oauth2.authorizationCode.getToken(tokenConfig);
     console.log(result);
     const accessToken = oauth2.accessToken.create(result);
     console.log(accessToken);
-
     sendPayloadWithParams({ accessToken }, res)
   } catch (err) {
-    res.json(err);
+    res.json({error: err});
+    waitOneMinute = true;
+    setTimeout(() => {
+      waitOneMinute = false;
+    }, 60000)
   }
 })
 
