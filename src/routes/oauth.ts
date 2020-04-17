@@ -34,21 +34,25 @@ router.get('/authorize', (req, res) => {
 });
 
 router.get('/callback', async (req, res) => {
+  console.log('*');
   const code: string = req.query.code as string;
+  console.log('*');
   if (code || typeof code != 'string') {
     res.sendStatus(BAD_REQUEST);
     return;
   }
+  console.log(code);
   const tokenConfig = { code, redirect_uri, scope };
   try {
     const result = await oauth2.authorizationCode.getToken(tokenConfig);
+    console.log(result);
     const accessToken = oauth2.accessToken.create(result);
-    sendPayloadWithParams({accessToken}, res)
-    
-  } catch (err) {
-    res.status(UNAUTHORIZED).json(err);
-  }
+    console.log(accessToken);
 
+    sendPayloadWithParams({ accessToken }, res)
+  } catch (err) {
+    res.json(err);
+  }
 })
 
 export default router;

@@ -4,19 +4,16 @@ import helmet from 'helmet';
 const { ExpressPeerServer } = require('peer');
 
 import express, { Request, Response, NextFunction } from 'express';
-import { BAD_REQUEST } from 'http-status-codes';
+import { BAD_REQUEST, OK } from 'http-status-codes';
 import 'express-async-errors';
 
 import BaseRouter from './routes';
 import DefaultRouter from './templating'
 import path from 'path';
-import qs from 'qs';
 import config from './config';
 
 // Init express
 const app = express();
-
-
 
 /************************************************************************************
  *                              Set basic express settings
