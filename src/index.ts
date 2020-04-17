@@ -43,6 +43,10 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
     });
 });
 
+app.get('/google8cebb85f1ba37774.html', (req, res) => {
+    res.status(OK).send("google-site-verification: google8cebb85f1ba37774.html");
+})
+
 
 // Start the server
 const port = Number(process.env.PORT || config.port);
