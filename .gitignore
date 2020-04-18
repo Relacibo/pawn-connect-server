@@ -98,6 +98,7 @@ tests/cases/user/axios-src/axios-src
 tests/cases/user/prettier/prettier
 .eslintcache
 
-src/config.js
+src/config.ts
 dist
 logs
+app.yaml

@@ -1,8 +1,0 @@
-{
-  "name": "Pawn Connect",
-  "description": "Pawn Connect for chess tournaments",
-  "repository": "https://github.com/Relacibo/pawn-connect-client",
-  "logo": "https://relacibo.github.io/pawn-connect-client/public/images/logo.png",
-  "keywords": ["node", "express", "heroku"],
-  "image": "heroku/nodejs"
-}
