@@ -10,7 +10,6 @@ import 'express-async-errors';
 import BaseRouter from './routes';
 import DefaultRouter from './templating'
 import path from 'path';
-const config = require('./config') || {};
 
 // Init express
 const app = express();
@@ -44,9 +43,7 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
 });
 
 
-const googleSiteVerificationCodes: [] =
-    process.env.GOOGLE_SITE_VERIFICATION_CODES ? process.env.GOOGLE_SITE_VERIFICATION_CODES.split(',') :
-        config.googleSiteVerificationCodes;
+const googleSiteVerificationCodes = process.env.GOOGLE_SITE_VERIFICATION_CODES ? process.env.GOOGLE_SITE_VERIFICATION_CODES.split(',') ;
 
 googleSiteVerificationCodes.forEach (code => {
     app.get(`/google${code}.html`, (req, res) => {

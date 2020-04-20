@@ -1,4 +1,4 @@
-const config = require('./config') || {};
+import config from '../config';
 import { Router, Response} from 'express';
 
 // Init router and path
