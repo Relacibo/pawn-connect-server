@@ -10,7 +10,7 @@ import 'express-async-errors';
 import BaseRouter from './routes';
 import DefaultRouter from './templating'
 import path from 'path';
-import config from './config';
+const config = require('./config') || {};
 
 // Init express
 const app = express();
@@ -44,7 +44,7 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
 });
 
 
-const googleSiteVerificationCodes =
+const googleSiteVerificationCodes: [] =
     process.env.GOOGLE_SITE_VERIFICATION_CODES ? process.env.GOOGLE_SITE_VERIFICATION_CODES.split(',') :
         config.googleSiteVerificationCodes;
 

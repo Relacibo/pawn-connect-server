@@ -2,8 +2,8 @@ import { Router } from 'express';
 import simpleOAuth2 from 'simple-oauth2'
 import status, { BAD_REQUEST, UNAUTHORIZED, OK } from 'http-status-codes';
 import axios from 'axios';
-import config from '../config';
 import { sendPayloadWithParams } from '../templating'
+const config = require('../config') || {}
 
 const router = Router();
 
