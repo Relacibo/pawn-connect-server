@@ -4,22 +4,24 @@ import { Router, Response} from 'express';
 // Init router and path
 const router = Router();
 const clientPublicFolder = process.env.CLIENT_PUBLIC_FOLDER || config.clientPublicFolder;
-const jsFileName = process.env.NODE_ENV === 'production' ? 'index.min.js' : 'index.js';
-const cssFileName = 'style.css';
+const jsImports = [
+  'react.js',
+  'react-dom.js',
+  'main.js'
+]
 
 export function sendPayloadWithParams(params: any, res: Response<any>) {
   let paramsJson = JSON.stringify(params);
   res.render('index', {
     title: 'Pawn Connect',
     clientPublicFolder,
-    jsFileName,
-    cssFileName,
+    jsImports,
     paramsJson
   });
 }
 
 router.get('/*', (req, res) => {
-  sendPayloadWithParams(req.query, res)
+  sendPayloadWithParams({ query: req.query }, res)
 });
 
 export default router;

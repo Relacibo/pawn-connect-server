@@ -3,8 +3,8 @@ html
     title= title
     each size in [16, 32, 96]
       link(rel='icon' type='image/png' href=`${clientPublicFolder}/images/favicon-${size}.png` sizes=`${size}x${size}`)
-    script(src=`${clientPublicFolder}/${jsFileName}`)
-    script(src=`${clientPublicFolder}/${cssFileName}`)
+    each jsImport in jsImports
+      script(src=`${clientPublicFolder}/${jsImport}`)
     script.
       pawnConnect.init(!{paramsJson})
   body

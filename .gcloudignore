@@ -16,6 +16,4 @@
 # Node.js dependencies:
 node_modules/
 
-src/config.ts
-
 dist
