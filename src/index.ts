@@ -43,7 +43,7 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
 });
 
 
-const googleSiteVerificationCodes = process.env.GOOGLE_SITE_VERIFICATION_CODES ? process.env.GOOGLE_SITE_VERIFICATION_CODES.split(',') ;
+const googleSiteVerificationCodes: string[] = process.env.GOOGLE_SITE_VERIFICATION_CODES ? process.env.GOOGLE_SITE_VERIFICATION_CODES.split(',') : [];
 
 googleSiteVerificationCodes.forEach (code => {
     app.get(`/google${code}.html`, (req, res) => {
@@ -54,7 +54,7 @@ googleSiteVerificationCodes.forEach (code => {
 
 
 // Start the server
-const port = Number(process.env.PORT || config.port);
+const port = process.env.PORT ? Number(process.env.PORT) : 3000;
 let server = app.listen(port, () => {
     console.log('Express server started on port: ' + port);
 });
@@ -74,7 +74,6 @@ console.log('Peer server started');
 app.get('/favicon.ico', (req, res) => res.sendStatus(404));
 
 let viewsDir = path.join(__dirname, 'views');
-app.set('json escape', true);
 app.set('views', viewsDir);
 app.set('view engine', 'pug');
 app.use('*', DefaultRouter);

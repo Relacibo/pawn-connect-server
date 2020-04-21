@@ -6,6 +6,6 @@ html
     each jsImport in jsImports
       script(src=`${clientPublicFolder}/${jsImport}`)
     script.
-      pawnConnect.init(!{paramsJson})
+      initialize(!{paramsJson})
   body
     #root

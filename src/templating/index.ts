@@ -1,9 +1,8 @@
-import config from '../config';
 import { Router, Response} from 'express';
 
 // Init router and path
 const router = Router();
-const clientPublicFolder = process.env.CLIENT_PUBLIC_FOLDER || config.clientPublicFolder;
+const clientPublicFolder = process.env.CLIENT_PUBLIC_FOLDER || '';
 const jsImports = [
   'react.js',
   'react-dom.js',

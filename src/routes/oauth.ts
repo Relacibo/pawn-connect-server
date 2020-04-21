@@ -3,16 +3,15 @@ import simpleOAuth2 from 'simple-oauth2'
 import status, { BAD_REQUEST, UNAUTHORIZED, OK } from 'http-status-codes';
 import axios from 'axios';
 import { sendPayloadWithParams } from '../templating';
-import config from '../config';
 
 const router = Router();
 
 (() => {
   var wait15Seconds = false;
 
-  const id = process.env.LICHESS_CLIENT_ID || config.lichessClientId;
-  const secret = process.env.LICHESS_CLIENT_SECRET || config.lichessClientSecret;
-  const hostName = process.env.HOSTNAME || config.hostName;
+  const id = process.env.LICHESS_CLIENT_ID || '';
+  const secret = process.env.LICHESS_CLIENT_SECRET || '';
+  const hostName = process.env.HOSTNAME || '';
   const redirect_uri = `${hostName}/api/oauth/lichess/callback`
   const tokenHost = 'https://oauth.lichess.org';
   const authorizePath = '/oauth/authorize';
