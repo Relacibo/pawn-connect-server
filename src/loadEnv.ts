@@ -14,7 +14,6 @@ const path = `./env/${options.env}.env`;
 if (fs.existsSync(path)) {
     // Set the env file
     const result2 = dotenv.config({ path });
-    console.log(result2);
     if (result2.error) {
         throw result2.error;
     }

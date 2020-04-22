@@ -6,11 +6,16 @@ const clientPublicFolder = process.env.CLIENT_PUBLIC_FOLDER || '';
 const jsImports = [
   'react.js',
   'react-dom.js',
+  'redux.js',
+  'peerjs.js',
   'main.js'
 ]
 
 export function sendPayloadWithParams(params: any, res: Response<any>) {
-  let paramsJson = JSON.stringify(params);
+  let paramsJson = null;
+  if (params) {
+    paramsJson = JSON.stringify(params);
+  }
   res.render('index', {
     title: 'Pawn Connect',
     clientPublicFolder,
@@ -20,7 +25,11 @@ export function sendPayloadWithParams(params: any, res: Response<any>) {
 }
 
 router.get('/*', (req, res) => {
-  sendPayloadWithParams({ query: req.query }, res)
+  let query = null;
+  if (req.query && Object.keys((req.query as any)).length > 0) {
+    query = { query: req.query }
+  }
+  sendPayloadWithParams(query, res)
 });
 
 export default router;

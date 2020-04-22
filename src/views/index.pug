@@ -1,11 +1,15 @@
 html
   head
     title= title
+    if paramsJson
+      script.
+        window.copyToMemory = true
     each size in [16, 32, 96]
       link(rel='icon' type='image/png' href=`${clientPublicFolder}/images/favicon-${size}.png` sizes=`${size}x${size}`)
     each jsImport in jsImports
       script(src=`${clientPublicFolder}/${jsImport}`)
-    script.
-      initialize(!{paramsJson})
+    if paramsJson
+      script.
+        initialize(!{paramsJson})
   body
     #root
