@@ -6,6 +6,8 @@ html
         window.copyToMemory = true
     each size in [16, 32, 96]
       link(rel='icon' type='image/png' href=`${clientPublicFolder}/images/favicon-${size}.png` sizes=`${size}x${size}`)
+    if style
+      link(rel='stylesheet' href=`${clientPublicFolder}/${style}`)
     each jsImport in jsImports
       script(src=`${clientPublicFolder}/${jsImport}`)
     if paramsJson

@@ -11,6 +11,8 @@ const jsImports = [
   'main.js'
 ]
 
+const style = process.env.NODE_ENV === 'development' ? 'style.css' : null;
+
 export function sendPayloadWithParams(params: any, res: Response<any>) {
   let paramsJson = null;
   if (params) {
@@ -20,6 +22,7 @@ export function sendPayloadWithParams(params: any, res: Response<any>) {
     title: 'Pawn Connect',
     clientPublicFolder,
     jsImports,
+    style,
     paramsJson
   });
 }
