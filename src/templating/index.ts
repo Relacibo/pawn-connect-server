@@ -11,7 +11,7 @@ const jsImports = [
   'main.js'
 ]
 
-const style = process.env.NODE_ENV === 'development' ? 'style.css' : null;
+const style = process.env.NODE_ENV === 'development' ? null : 'style.css';
 
 export function sendPayloadWithParams(params: any, res: Response<any>) {
   let paramsJson = null;
