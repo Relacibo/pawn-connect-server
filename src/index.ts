@@ -8,7 +8,7 @@ import { BAD_REQUEST, OK } from 'http-status-codes';
 import 'express-async-errors';
 
 import BaseRouter from './routes';
-import DefaultRouter from './templating'
+import DefaultRouter, { serve } from './templating'
 import path from 'path';
 
 // Init express
@@ -62,9 +62,7 @@ let server = app.listen(port, () => {
 /************************************************************************************
  *                                    Peer-Server
  ***********************************************************************************/
-const peerServer = ExpressPeerServer(server, {
-    debug: true
-});
+const peerServer = ExpressPeerServer(server, {debug: true});
 app.use('/peerjs', peerServer);
 console.log('Peer server started');
 
@@ -76,4 +74,4 @@ app.get('/favicon.ico', (req, res) => res.sendStatus(404));
 let viewsDir = path.join(__dirname, 'views');
 app.set('views', viewsDir);
 app.set('view engine', 'pug');
-app.use('*', DefaultRouter);
+app.get('/', serve);

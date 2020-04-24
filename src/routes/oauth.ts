@@ -60,24 +60,25 @@ const router = Router();
     setTimeout(() => {
       wait15Seconds = false;
     }, 15000)
-    
+
   }
 
   router.post('/lichess/refresh', async (req, res) => {
-    const refresh_token: string = req.query.refresh_token as string;
+    const refresh_token: string = req.body.refresh_token as string;
     if (!refresh_token || typeof refresh_token !== 'string') {
-      res.json({ error: 'refresh_token not set' });
+      res.status(BAD_REQUEST).json({ error: 'refresh_token not set' });
       return;
     }
     try {
       const response = await axios({
         method: 'post',
         url: `${tokenHost}${tokenPath}`,
-        params: { 
-          grant_type: 'refresh_token', 
-          refresh_token, 
-          client_id: id, 
-          client_secret: secret }
+        params: {
+          grant_type: 'refresh_token',
+          refresh_token,
+          client_id: id,
+          client_secret: secret
+        }
       });
       res.send(response.data);
     } catch (err) {

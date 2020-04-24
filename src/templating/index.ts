@@ -1,4 +1,4 @@
-import { Router, Response} from 'express';
+import { Router, Response, Request } from 'express';
 
 // Init router and path
 const router = Router();
@@ -27,12 +27,12 @@ export function sendPayloadWithParams(params: any, res: Response<any>) {
   });
 }
 
-router.get('/*', (req, res) => {
+export function serve(req: Request, res: Response<any>) {
   let query = null;
   if (req.query && Object.keys((req.query as any)).length > 0) {
     query = { query: req.query }
   }
   sendPayloadWithParams(query, res)
-});
+}
 
 export default router;

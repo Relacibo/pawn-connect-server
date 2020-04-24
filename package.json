@@ -19,7 +19,7 @@
     "gcp-build": "npm run build",
     "lint": "tslint --project \"tsconfig.json\"",
     "start": "NODE_ENV=production node dist/index.js",
-    "start:dev": "NODE_ENV=development nodemon --config nodemon.json",
+    "dev": "NODE_ENV=development nodemon --config nodemon.json",
     "test": "nodemon --config nodemon.test.json"
   },
   "dependencies": {
