@@ -1,15 +1,14 @@
 import './loadEnv'; // Must be the first import
 import morgan from 'morgan';
 import helmet from 'helmet';
-const { ExpressPeerServer } = require('peer');
+import path from 'path';
 
 import express, { Request, Response, NextFunction } from 'express';
 import { BAD_REQUEST, OK } from 'http-status-codes';
 import 'express-async-errors';
 
 import BaseRouter from './routes';
-import DefaultRouter, { serve } from './templating'
-import path from 'path';
+import { serve } from './templating'
 
 // Init express
 const app = express();
@@ -58,13 +57,6 @@ const port = process.env.PORT ? Number(process.env.PORT) : 3000;
 let server = app.listen(port, () => {
     console.log('Express server started on port: ' + port);
 });
-
-/************************************************************************************
- *                                    Peer-Server
- ***********************************************************************************/
-const peerServer = ExpressPeerServer(server, {debug: true});
-app.use('/peerjs', peerServer);
-console.log('Peer server started');
 
 /************************************************************************************
  *                              Serve front-end content

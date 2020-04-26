@@ -80,7 +80,7 @@ const router = Router();
           client_secret: secret
         }
       });
-      res.send(response.data);
+      res.status(response.status).send(response.data);
     } catch (err) {
       onError(res);
     }
